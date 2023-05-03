@@ -126,3 +126,24 @@ footer {
   margin: 0 auto;
 }
 
+/* Header */
+header {
+  padding: 24px 110px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav {
+  display: inline-flex;
+  gap: 32px;
+  align-items: center;
+}
+
+nav a {
+  text-transform: uppercase;
+  font-size: 1.4em;
+  color: var(--primary-text-color);
+  line-height: 1.5;
+  font-weight: 600;
+}
