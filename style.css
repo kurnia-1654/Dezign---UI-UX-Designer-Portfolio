@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --bg-color: #010208;
   --bg-text-grad: linear-gradient(99.05deg, #bc3cd8 0.07%, #c54b8c 106.32%);
@@ -161,7 +165,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 50%;
   transform: translate(-50%, 0);
@@ -208,6 +212,11 @@ nav a {
 }
 
 /* client */
+
+#client {
+  padding: 130px 110px;
+}
+
 .client-list {
   display: flex;
   justify-content: space-between;
@@ -227,6 +236,7 @@ nav a {
 }
 
 /* Work */
+
 .project {
   display: flex;
   flex-direction: row;
@@ -243,4 +253,8 @@ nav a {
 
 .project h3 {
   margin: 16px 0 24px;
+}
+
+.project:nth-child(odd) {
+  flex-direction: row-reverse;
 }
