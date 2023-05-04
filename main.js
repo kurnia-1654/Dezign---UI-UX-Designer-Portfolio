@@ -85,19 +85,48 @@ window.addEventListener('scroll', () => {
 
 var links = document.querySelectorAll("nav a")
 
-const obs = new IntersectionObserver((entries) => {
-    entries.forEach(en => {
-        if (en.isIntersecting) {
-            var id = en.target.getAttribute('id')
-            links.forEach(link => {
-                var href = link.getAttribute('href').substring(1)
-                 id == href ? link.classList.add('active') : link.classList.remove('active')
-            });
-        }
-    });
+// const obs = new IntersectionObserver((entries) => {
+//     entries.forEach(en => {
+//         if (en.isIntersecting) {
+//             var id = en.target.getAttribute('id')
+//             links.forEach(link => {
+//                 var href = link.getAttribute('href').substring(1)
+//                  id == href ? link.classList.add('active') : link.classList.remove('active')
+//             });
+//         }
+//     });
+// })
+
+// const section = document.querySelectorAll("section")
+// section.forEach(s => {
+//     obs.observe(s)
+// });
+
+
+window.addEventListener('scroll', () => {
+    var scrollTop = window.scrollY + 1
+    var homeOffset = 0 // 0
+    var works = document.querySelector('#works')
+    var about = document.querySelector('#about')
+    
+    var worksOffset = works.offsetTop - window.innerHeight / 2
+    var aboutOffset = about.offsetTop - window.innerHeight / 2
+    
+    console.log(worksOffset);
+
+    if (scrollTop >= worksOffset) {
+        checkLink('works')
+    }else {
+        checkLink('home')
+    }
+    if (scrollTop >= aboutOffset) {
+        checkLink('about')
+    }
 })
 
-const section = document.querySelectorAll("section")
-section.forEach(s => {
-    obs.observe(s)
-});
+function checkLink(id) {
+    links.forEach(link => {
+        var href = link.getAttribute('href').substring(1)
+        href == id ? link.classList.add('active') : link.classList.remove('active') 
+    });
+}
