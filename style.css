@@ -48,8 +48,21 @@ h5 {
   font-size: 1.5em;
 }
 
-p {
+.label {
+  text-transform: uppercase;
+  font-size: 1.6em;
+  line-height: 1.5;
+  color: var(--primary-text-color);
+  font-weight: 600;
+}
+
+.body-text {
+  display: block;
   font-size: 1.8em;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 150%;
+  color: var(--primary-text-color);
 }
 
 .semibold {
@@ -86,7 +99,7 @@ button {
   cursor: pointer;
   text-transform: uppercase;
   font-size: 1.6em;
-  line-height: 1.5;
+  line-height: 1;
   letter-spacing: 0.04em;
   text-align: center;
   font-weight: 600;
@@ -96,18 +109,34 @@ button {
   gap: 8px;
   align-items: center;
   justify-content: center;
+  color: var(--primary-text-color);
+  margin-top: 3.2em;
 }
 
 button.primary-btn {
+  padding: 0.8em 1.6em;
+  background: transparent;
+  border: 1px solid var(--secondary-text-color);
+  transition: 0.3s;
+}
+
+button:hover {
   padding: 0.8em 2.8em;
   background: var(--bg-text-grad);
   border: 1px solid var(--primary-text-color);
 }
 
-button.secondary-btn {
-  padding: 0.8em 1.6em;
-  background: transparent;
-  border: 1px solid var(--secondary-text-color);
+button.primary-btn span {
+  width: 24px;
+  height: 24px;
+  display: block;
+  background: url(res/icon/expand-false.svg) no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+button:hover span {
+  background: url(res/icon/expand-true.svg) no-repeat;
 }
 
 .social-icon {
@@ -118,7 +147,7 @@ button.secondary-btn {
 }
 
 header,
-main,
+section,
 footer {
   width: 100%;
   max-width: 1440px;
@@ -159,6 +188,7 @@ nav a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 #hero h1 {
@@ -175,4 +205,42 @@ nav a {
   position: absolute;
   bottom: 42px;
   cursor: pointer;
+}
+
+/* client */
+.client-list {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  margin-top: 80px;
+  width: 100%;
+}
+
+.client-list img {
+  min-height: 60px;
+  filter: grayscale(1);
+  cursor: pointer;
+}
+
+.client-list img:hover {
+  filter: grayscale(0);
+}
+
+/* Work */
+.project {
+  display: flex;
+  flex-direction: row;
+  gap: 3.2em;
+  align-items: flex-end;
+  margin: 97px 0;
+}
+
+.project-image {
+  width: 50%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.project h3 {
+  margin: 16px 0 24px;
 }
