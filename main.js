@@ -59,3 +59,22 @@ for (let i = 1; i <= Object.keys(projects).length; i++) {
 
     worksSection.append(project)
 }
+
+
+
+// Reveal header on scroll
+const header = document.querySelector('header')
+var scrollPos = window.scrollY
+if (scrollPos <= 840) header.classList.add('scale-1'); else header.classList.remove('scale-1')
+
+window.addEventListener('scroll', () => {
+    var newScrollPos = window.scrollY
+    if (window.scrollY > scrollPos) {
+        header.classList.remove('scale-1')
+        scrollPos = newScrollPos
+    } else {
+        scrollPos = newScrollPos
+        header.classList.add('scale-1')
+    }
+    
+})
