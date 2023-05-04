@@ -102,8 +102,6 @@ var links = document.querySelectorAll("nav a")
 //     obs.observe(s)
 // });
 
-
-window.addEventListener('scroll', () => {
     var scrollTop = window.scrollY + 1
     var homeOffset = 0 // 0
     var works = document.querySelector('#works')
@@ -111,9 +109,8 @@ window.addEventListener('scroll', () => {
     
     var worksOffset = works.offsetTop - window.innerHeight / 2
     var aboutOffset = about.offsetTop - window.innerHeight / 2
-    
-    console.log(worksOffset);
 
+window.addEventListener('scroll', () => {
     if (scrollTop >= worksOffset) {
         checkLink('works')
     }else {
@@ -130,3 +127,11 @@ function checkLink(id) {
         href == id ? link.classList.add('active') : link.classList.remove('active') 
     });
 }
+
+
+var down = document.querySelector('.ic-down')
+down.addEventListener('click', () => {
+    window.scrollBy(0, works.offsetTop) 
+})
+
+
