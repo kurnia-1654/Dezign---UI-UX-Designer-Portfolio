@@ -78,3 +78,26 @@ window.addEventListener('scroll', () => {
     }
     
 })
+
+
+
+// Styling nav a
+
+var links = document.querySelectorAll("nav a")
+
+const obs = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+        if (en.isIntersecting) {
+            var id = en.target.getAttribute('id')
+            links.forEach(link => {
+                var href = link.getAttribute('href').substring(1)
+                 id == href ? link.classList.add('active') : link.classList.remove('active')
+            });
+        }
+    });
+})
+
+const section = document.querySelectorAll("section")
+section.forEach(s => {
+    obs.observe(s)
+});

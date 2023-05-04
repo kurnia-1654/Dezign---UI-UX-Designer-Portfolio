@@ -100,16 +100,6 @@ a {
   position: relative;
 }
 
-.active::after {
-  content: "";
-  width: 9px;
-  height: 1px;
-  border: 1px solid var(--primary-text-color);
-  position: absolute;
-  bottom: 0;
-  margin: 0 auto;
-}
-
 button {
   all: unset;
   cursor: pointer;
@@ -216,7 +206,7 @@ header {
 
 nav {
   display: inline-flex;
-  gap: 32px;
+  gap: 3.2em;
   align-items: center;
 }
 
@@ -226,6 +216,30 @@ nav a {
   color: var(--primary-text-color);
   line-height: 1.5;
   font-weight: 600;
+  transition: 0.3s;
+  position: relative;
+  padding: 8px 0;
+}
+
+nav a:hover,
+nav a:active,
+.active {
+  background: var(--bg-text-grad);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+nav a.active::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 0.1px;
+  width: 9px;
+  background: var(--primary-text-color);
+  border: 1px solid var(--primary-text-color);
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 #home {
