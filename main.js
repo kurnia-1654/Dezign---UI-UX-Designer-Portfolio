@@ -1,3 +1,4 @@
+// 'use strict'
 const projects = {
     1: {
         image:"res/work1.jpg", 
@@ -35,7 +36,7 @@ const projects = {
 
 var worksSection = document.querySelector('#works')
 
-for (let i = 1; i <= Object.keys(projects).length; i++) {
+for (let i in projects) { // let i = 1; i <= Object.keys(projects).length; i++
     var project = document.createElement('div')
     project.classList.add('project')
 
@@ -55,6 +56,24 @@ for (let i = 1; i <= Object.keys(projects).length; i++) {
         </button>
         </div>
     `
+    // with (projects[i]) {
+    //     var projectContent = `
+    //     <img class="project-image" src="${image}" alt="" />
+    //     <div class="project-details">
+    //     <span class="label">${label}</span>
+    //     <h3>
+    //         ${titleLight}
+    //         <span class="semibold">
+    //             ${titleBold}
+    //         </span>
+    //     </h3>
+    //     <span class="body-text">${tag}</span>
+    //     <button class="primary-btn" onclick="window.location.href = '${link}'">
+    //         View Work <span></span>
+    //     </button>
+    //     </div>
+    // `
+    // }
     project.innerHTML = projectContent
 
     worksSection.append(project)
@@ -102,6 +121,7 @@ var links = document.querySelectorAll("nav a")
 //     obs.observe(s)
 // });
 
+window.addEventListener('scroll', () => {
     var scrollTop = window.scrollY + 1
     var homeOffset = 0 // 0
     var works = document.querySelector('#works')
@@ -109,8 +129,6 @@ var links = document.querySelectorAll("nav a")
     
     var worksOffset = works.offsetTop - window.innerHeight / 2
     var aboutOffset = about.offsetTop - window.innerHeight / 2
-
-window.addEventListener('scroll', () => {
     if (scrollTop >= worksOffset) {
         checkLink('works')
     }else {
@@ -130,8 +148,26 @@ function checkLink(id) {
 
 
 var down = document.querySelector('.ic-down')
+var works = document.querySelector('#works')
+
 down.addEventListener('click', () => {
     window.scrollBy(0, works.offsetTop) 
 })
 
+var btn = document.querySelector('.mobile-menu-btn')
+var a = document.querySelectorAll('nav a')
+a.forEach(e => {
+    e.addEventListener('click', () => {
+        for (let e of a) {
+            e.classList.toggle('show') 
+            btn.classList.toggle('rotate')
+        }
+    })
+});
 
+btn.addEventListener('click', (e) => {
+    e.target.classList.toggle('rotate')
+    a.forEach(e => {
+        e.classList.toggle('show')
+    });
+})
