@@ -123,7 +123,7 @@ var down = document.querySelector('.ic-down')
 var works = document.querySelector('#works')
 
 down.addEventListener('click', () => {
-    window.scrollBy(0, works.offsetTop) 
+    window.scrollTo(0, works.offsetTop) 
 })
 
 var btn = document.querySelector('.mobile-menu-btn')
