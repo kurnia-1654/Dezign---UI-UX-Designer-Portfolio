@@ -1,85 +1,57 @@
 // 'use strict'
-const projects = {
-    1: {
-        image:"res/work1.jpg", 
-        label: "Real estate Template", 
-        titleLight: "Lorem ipsum dolor sit amet, consectetur", 
-        titleBold: "adipiscing elit. Ultrices lorem non feugiat egestas amet.", 
-        tag: "Website Design", 
-        link:"#", 
-    }, 
-    2: {
-        image:"res/work2.jpg", 
-        label: "Plant identification app", 
-        titleLight: "Lorem ipsum dolor sit amet, consectetur", 
-        titleBold: "adipiscing elit. Ultrices lorem non feugiat egestas amet.", 
-        tag: "Mobile App", 
-        link:"#", 
-    }, 
-    3: {
-        image:"res/work3.jpg", 
-        label: "Smart Home App",
-        titleLight: "Lorem ipsum dolor sit amet, consectetur",
-        titleBold: "adipiscing elit. Ultrices lorem non feugiat egestas amet.",
-        tag: "Mobile App",
-        link: "#",
-    }, 
-    4: {
-        image:"res/work4.jpg", 
-        label: "Logo Animation",
-        titleLight: "Lorem ipsum dolor sit amet, consectetur",
-        titleBold: "adipiscing elit. Ultrices lorem non feugiat egestas amet.",
-        tag: "Animation",
-        link: "#",
+const reqAJAX = new XMLHttpRequest()
+reqAJAX.open('GET', 'projects.json')
+reqAJAX.send()
+
+reqAJAX.onload = loadProjects
+
+function loadProjects() {
+    const projects = JSON.parse(reqAJAX.responseText) // convert json string to object
+    const worksSection = document.querySelector('#works')
+
+    for (let i in projects) { // let i = 1; i <= Object.keys(projects).length; i++
+        var project = document.createElement('div')
+        project.classList.add('project')
+
+        var projectContent = `
+            <img class="project-image" src="${projects[i].image}" alt="" />
+            <div class="project-details">
+            <span class="label">${projects[i].label}</span>
+            <h3>
+                ${projects[i].titleLight}
+                <span class="semibold">
+                    ${projects[i].titleBold}
+                </span>
+            </h3>
+            <span class="body-text">${projects[i].tag}</span>
+            <button class="primary-btn" onclick="window.location.href = '${projects[i].link}'">
+                View Work <span></span>
+            </button>
+            </div>
+        `
+        // with (projects[i]) { // not allowed in strict mode
+        //     var projectContent = `
+        //     <img class="project-image" src="${image}" alt="" />
+        //     <div class="project-details">
+        //     <span class="label">${label}</span>
+        //     <h3>
+        //         ${titleLight}
+        //         <span class="semibold">
+        //             ${titleBold}
+        //         </span>
+        //     </h3>
+        //     <span class="body-text">${tag}</span>
+        //     <button class="primary-btn" onclick="window.location.href = '${link}'">
+        //         View Work <span></span>
+        //     </button>
+        //     </div>
+        // `
+        // }
+        project.innerHTML = projectContent
+
+        worksSection.append(project)
     }
 }
-
-var worksSection = document.querySelector('#works')
-
-for (let i in projects) { // let i = 1; i <= Object.keys(projects).length; i++
-    var project = document.createElement('div')
-    project.classList.add('project')
-
-    var projectContent = `
-        <img class="project-image" src="${projects[i].image}" alt="" />
-        <div class="project-details">
-        <span class="label">${projects[i].label}</span>
-        <h3>
-            ${projects[i].titleLight}
-            <span class="semibold">
-                ${projects[i].titleBold}
-            </span>
-        </h3>
-        <span class="body-text">${projects[i].tag}</span>
-        <button class="primary-btn" onclick="window.location.href = '${projects[i].link}'">
-            View Work <span></span>
-        </button>
-        </div>
-    `
-    // with (projects[i]) {
-    //     var projectContent = `
-    //     <img class="project-image" src="${image}" alt="" />
-    //     <div class="project-details">
-    //     <span class="label">${label}</span>
-    //     <h3>
-    //         ${titleLight}
-    //         <span class="semibold">
-    //             ${titleBold}
-    //         </span>
-    //     </h3>
-    //     <span class="body-text">${tag}</span>
-    //     <button class="primary-btn" onclick="window.location.href = '${link}'">
-    //         View Work <span></span>
-    //     </button>
-    //     </div>
-    // `
-    // }
-    project.innerHTML = projectContent
-
-    worksSection.append(project)
-}
-
-
 
 // Reveal header on scroll
 const header = document.querySelector('header')
